@@ -1,0 +1,29 @@
+{
+    "name": "fastwhal\/hik-device-gateway",
+    "description": "Device Gateway可以当做是协议转换器, 将海康产品接入到第三方平台",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "php",
+        "hyperf",
+        "hik-device-gateway",
+        "Device Gateway",
+        "ISUP",
+        "ISAPI"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Fastwhal\\HikDeviceGateway\\": "src"
+        }
+    },
+    "authors": [
+        {
+            "name": "pigcms",
+            "email": "dianshang@mail.pigcms.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "guzzlehttp/guzzle": "^6.5|^7.0"
+    }
+}
