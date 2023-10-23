@@ -20,7 +20,7 @@ use function GuzzleHttp\Psr7\try_fopen;
 
 trait Client
 {
-    use AuthService;
+ 
     use TraitFunctions;
 
     public static $client;
@@ -80,7 +80,7 @@ trait Client
         return self::$appConfig;
     }
 
-    
+
     /**
      * @param string $httpMetod HTTP请求方法
      * @param string $endpoint URI
