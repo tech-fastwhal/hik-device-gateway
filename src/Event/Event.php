@@ -63,7 +63,9 @@ class Event extends BaseService
         $endpoint = '/ISAPI/Event/notification/httpHosts?format=json&devIndex='.$devIndex;
         $param = [
             'HttpHostNotificationList'=>[
-                'HttpHostNotification'=>$params
+                [
+                    'HttpHostNotification'=>$params
+                ]
             ]
         ];
         return $this->doHttpReuqest('POST',$endpoint,$param);
