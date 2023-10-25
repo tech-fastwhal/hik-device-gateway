@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /**
  * This file is part of Kuaijing Bailing.
@@ -16,15 +17,15 @@ use Fastwhal\HikDeviceGateway\Interfaces\Provider;
  * @method getGatewayInfo()
  * @method setGatewayInfo(array $params)
  * @method rebootGateway()
- * @method  getGatewayTime()
+ * @method getGatewayTime()
  * @method setGatewayTime(array $params)
  */
 class GatewayCfgProvider implements Provider
 {
     public function serviceProvider(Container $container)
     {
-        $container['Gateway'] = function ($container){
-          return new GatewayCfg($container);
+        $container['Gateway'] = function ($container) {
+            return new GatewayCfg($container);
         };
     }
 }

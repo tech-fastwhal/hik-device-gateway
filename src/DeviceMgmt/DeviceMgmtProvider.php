@@ -8,7 +8,6 @@ declare(strict_types=1);
  * @document https://help.kuaijingai.com
  * @contact  www.kuaijingai.com 7*12 9:00-21:00
  */
-
 namespace Fastwhal\HikDeviceGateway\DeviceMgmt;
 
 use Fastwhal\HikDeviceGateway\Core\Container;
@@ -36,7 +35,6 @@ use Fastwhal\HikDeviceGateway\Interfaces\Provider;
  * @method setDeviceIpAddress(string $id,string $devIndex,array $params)
  * @method upgradeEhome(string $devIndex,array $params)
  * @method getDeviceAlarmIOInfo(string $devIndex)
- *
  */
 class DeviceMgmtProvider implements Provider
 {

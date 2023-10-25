@@ -8,14 +8,13 @@ declare(strict_types=1);
  * @document https://help.kuaijingai.com
  * @contact  www.kuaijingai.com 7*12 9:00-21:00
  */
-
 namespace Fastwhal\HikDeviceGateway;
 
 class AlarmDeviceErrorMsg
 {
     // 格式：  '次类型值'=>'次类型名称'
     // 1-设备报警
-    public  $alarmDevMsg = [
+    public $alarmDevMsg = [
         1024 => '防区短路报警',
         1025 => '防区断开报警',
         1026 => '防区异常报警',
@@ -36,7 +35,7 @@ class AlarmDeviceErrorMsg
     ];
 
     // 2-设备异常
-    public  $deviceAbnormalityMsg = [
+    public $deviceAbnormalityMsg = [
         39 => '网络断开',
         58 => 'RS485 连接异常',
         59 => 'RS485 连接恢复',
@@ -73,7 +72,7 @@ class AlarmDeviceErrorMsg
     ];
 
     // 3-设备操作
-    public  $deviceOperationMsg = [
+    public $deviceOperationMsg = [
         80 => '地登录',
         90 => '地升级',
         112 => '远程登录',
@@ -114,7 +113,7 @@ class AlarmDeviceErrorMsg
     ];
 
     // 5-设备事件
-    public  $deviceEventMsg = [
+    public $deviceEventMsg = [
         1 => '有效卡认证完成',
         2 => '刷卡加密码认证完成',
         3 => '刷卡加密码认证失败',

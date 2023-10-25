@@ -8,10 +8,8 @@ declare(strict_types=1);
  * @document https://help.kuaijingai.com
  * @contact  www.kuaijingai.com 7*12 9:00-21:00
  */
-
 namespace Fastwhal\HikDeviceGateway;
 
-use Fastwhal\HikDeviceGateway\AccessControl\Ac;
 use Fastwhal\HikDeviceGateway\AccessControl\AcProvider;
 use Fastwhal\HikDeviceGateway\Core\ContainerBase;
 use Fastwhal\HikDeviceGateway\DeviceMgmt\DeviceMgmtProvider;
@@ -38,7 +36,7 @@ class Gateway extends ContainerBase
         StreamProvider::class,
         AcProvider::class,
         EventProvider::class,
-        GatewayCfgProvider::class
+        GatewayCfgProvider::class,
     ];
 
     private static $config;
@@ -58,7 +56,6 @@ class Gateway extends ContainerBase
     public function getServiceUrl()
     {
         $config = Client::getAppConfig();
-        $baseUri = $config['protocol'] . '://' . $config['host'] . ':' . $config['port'];
-        return $baseUri;
+        return $config['protocol'] . '://' . $config['host'] . ':' . $config['port'];
     }
 }

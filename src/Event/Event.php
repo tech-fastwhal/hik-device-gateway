@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /**
  * This file is part of Kuaijing Bailing.
@@ -13,61 +14,60 @@ use Fastwhal\HikDeviceGateway\Core\BaseService;
 
 class Event extends BaseService
 {
-
     //开启事件/报警订阅
     public function subscribeDeviceMgmt(array $params)
     {
         $endpoint = '/ISAPI/Event/notification/subscribeDeviceMgmt?format=json';
         $param = [
-            'SubscribeDeviceMgmt'=> $params,
+            'SubscribeDeviceMgmt' => $params,
         ];
-        return $this->doHttpReuqest('POST',$endpoint,$param);
+        return $this->doHttpReuqest('POST', $endpoint, $param);
     }
 
     //获取指定设备已订阅的报警或事件类型。请求 URI 中的 ID 是指订阅 ID，uuid 是指设备 ID。
-    public function getSubscribeDeviceMgmt(string $subId,string $devIndex)
+    public function getSubscribeDeviceMgmt(string $subId, string $devIndex)
     {
-        $endpoint = '/ISAPI/Event/notification/subscribeDeviceMgmt/'.$subId.'/devIndex/'.$devIndex.'?format=json';
+        $endpoint = '/ISAPI/Event/notification/subscribeDeviceMgmt/' . $subId . '/devIndex/' . $devIndex . '?format=json';
         $param = [
-            'format'=>'json',
-            'devIndex'=>$devIndex,
-            'id'=>$subId
+            'format' => 'json',
+            'devIndex' => $devIndex,
+            'id' => $subId,
         ];
-        return $this->doHttpReuqest('GET',$endpoint,$param);
+        return $this->doHttpReuqest('GET', $endpoint, $param);
     }
 
     //获取指定设备已订阅的报警或事件类型(POST方式)。
-    public function getSubscribeDeviceMgmtV2(string $subId,string $devIndex,array $params)
+    public function getSubscribeDeviceMgmtV2(string $subId, string $devIndex, array $params)
     {
-        $endpoint = '/ISAPI/Event/notification/subscribeDeviceMgmt/'.$subId.'/devIndex/'.$devIndex.'?format=json';
+        $endpoint = '/ISAPI/Event/notification/subscribeDeviceMgmt/' . $subId . '/devIndex/' . $devIndex . '?format=json';
         $param = [
-            'SubscribeDevEvent'=>$params
+            'SubscribeDevEvent' => $params,
         ];
-        return $this->doHttpReuqest('POST',$endpoint,$param);
+        return $this->doHttpReuqest('POST', $endpoint, $param);
     }
 
     //获取所有监听服务器参数。
     public function gethttpHosts(string $devIndex)
     {
-        $endpoint = '/ISAPI/Event/notification/httpHosts?format=json&devIndex='.$devIndex;
+        $endpoint = '/ISAPI/Event/notification/httpHosts?format=json&devIndex=' . $devIndex;
         $param = [
-            'format'=>'json',
-            'devIndex'=>$devIndex
+            'format' => 'json',
+            'devIndex' => $devIndex,
         ];
-        return $this->doHttpReuqest('GET',$endpoint,$param);
+        return $this->doHttpReuqest('GET', $endpoint, $param);
     }
 
     //添加监听服务器。。
-    public function sethttpHosts(string $devIndex,array $params)
+    public function sethttpHosts(string $devIndex, array $params)
     {
-        $endpoint = '/ISAPI/Event/notification/httpHosts?format=json&devIndex='.$devIndex;
+        $endpoint = '/ISAPI/Event/notification/httpHosts?format=json&devIndex=' . $devIndex;
         $param = [
-            'HttpHostNotificationList'=>[
+            'HttpHostNotificationList' => [
                 [
-                    'HttpHostNotification'=>$params
-                ]
-            ]
+                    'HttpHostNotification' => $params,
+                ],
+            ],
         ];
-        return $this->doHttpReuqest('POST',$endpoint,$param);
+        return $this->doHttpReuqest('POST', $endpoint, $param);
     }
 }

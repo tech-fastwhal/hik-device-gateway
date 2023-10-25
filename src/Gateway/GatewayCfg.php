@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /**
  * This file is part of Kuaijing Bailing.
@@ -20,7 +21,7 @@ class GatewayCfg extends BaseService
         $param = [
             'format' => 'json',
         ];
-        return $this->doHttpReuqest('GET',$url,$param);
+        return $this->doHttpReuqest('GET', $url, $param);
     }
 
     //设置设备网关信息
@@ -30,16 +31,15 @@ class GatewayCfg extends BaseService
         $param = [
             'DeviceInfo' => $params,
         ];
-        return $this->doHttpReuqest('PUT',$url,$param);
+        return $this->doHttpReuqest('PUT', $url, $param);
     }
 
     //重启 Hik Device Gateway。
     public function rebootGateway()
     {
         $url = '/ISAPI/System/reboot?format=json';
-        return $this->doHttpReuqest('PUT',$url);
+        return $this->doHttpReuqest('PUT', $url);
     }
-
 
     //获取校时管理参数
     public function getGatewayTime()
@@ -48,7 +48,7 @@ class GatewayCfg extends BaseService
         $param = [
             'format' => 'json',
         ];
-        return $this->doHttpReuqest('GET',$url,$param);
+        return $this->doHttpReuqest('GET', $url, $param);
     }
 
     //设置校时管理参数
@@ -58,7 +58,6 @@ class GatewayCfg extends BaseService
         $param = [
             'Time' => $params,
         ];
-        return $this->doHttpReuqest('PUT',$url,$param);
+        return $this->doHttpReuqest('PUT', $url, $param);
     }
-
 }

@@ -8,28 +8,23 @@ declare(strict_types=1);
  * @document https://help.kuaijingai.com
  * @contact  www.kuaijingai.com 7*12 9:00-21:00
  */
-
 namespace Fastwhal\HikDeviceGateway\Http;
 
-use Fastwhal\HikDeviceGateway\Exceptions\Exception;
-use Fastwhal\HikDeviceGateway\StatusCodeErrMsg;
 use Fastwhal\HikDeviceGateway\Support\TraitFunctions;
 use GuzzleHttp\Exception\BadResponseException;
-use GuzzleHttp\Psr7\Utils;
-use function GuzzleHttp\Psr7\try_fopen;
 
 trait Client
 {
- 
     use TraitFunctions;
 
     public static $client;
 
-    protected static $appConfig = [];
-
     //是否包含图片地址
-    public $hasBindImgUrl =  false;
+    public $hasBindImgUrl = false;
+
     public $imageUrl = '';
+
+    protected static $appConfig = [];
 
     public function httpClient()
     {
@@ -80,59 +75,56 @@ trait Client
         return self::$appConfig;
     }
 
-
     /**
      * @param string $httpMetod HTTP请求方法
      * @param string $endpoint URI
      * @param array $params 请求参数，默认为空
      * @param array $headers header头参数
-     * @return mixed|\Psr\Http\Message\ResponseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return mixed|\Psr\Http\Message\ResponseInterface
      */
-    public function doHttpReuqest(string $httpMetod,string $endpoint,array $params =[],array $headers=[])
+    public function doHttpReuqest(string $httpMetod, string $endpoint, array $params = [], array $headers = [])
     {
-        $this->dump(['$endpoint'=>$endpoint,'发送请求参数'=>json_encode($params)]);
+        $this->dump(['$endpoint' => $endpoint, '发送请求参数' => json_encode($params)]);
         try {
             $config = self::getAppConfig();
             $baseUri = $config['protocol'] . '://' . $config['host'] . ':' . $config['port'];
-            $client = new \GuzzleHttp\Client(['base_uri' => $baseUri,'timeout'=>30]);
+            $client = new \GuzzleHttp\Client(['base_uri' => $baseUri, 'timeout' => 30]);
             $options = [
                 'headers' => $headers,
-                'json'=>$params
+                'json' => $params,
             ];
-            if (strtolower($httpMetod) === 'get'){
+            if (strtolower($httpMetod) === 'get') {
                 $options['query'] = $params;
             }
 
-            if ($this->hasBindImgUrl){
+            if ($this->hasBindImgUrl) {
                 $multipart = [
                     [
                         'name' => 'data',
                         'contents' => \json_encode($params),
-                        'headers'=>[
-                            'Content-Type'=>'application/json'
-                        ]
+                        'headers' => [
+                            'Content-Type' => 'application/json',
+                        ],
                     ],
                     [
                         'name' => 'FaceDataRecord',
-                        'contents' =>  file_get_contents($this->getImageUrl()),
+                        'contents' => file_get_contents($this->getImageUrl()),
                         'filename' => basename($this->getImageUrl()),
-                        'headers'=>[
-                            'Content-Disposition'=>'form-data',
-//                            'Content-Type'=>'image/jpeg'
-                        ]
+                        'headers' => [
+                            'Content-Disposition' => 'form-data',
+                            //                            'Content-Type'=>'image/jpeg'
+                        ],
                     ],
                 ];
                 $options = [
                     'headers' => $headers,
-                    'multipart'=>$multipart,
+                    'multipart' => $multipart,
                 ];
-
             }
 
-            $response = $client->request($httpMetod, $endpoint,$options );
+            $response = $client->request($httpMetod, $endpoint, $options);
             $response = $this->unwrapResponse($response);
-
         } catch (BadResponseException $exception) {
             $serverResponse = $exception->getResponse();
             $request = $exception->getRequest();
@@ -164,14 +156,10 @@ trait Client
                 $request = $request->withHeader('Authorization', $digestHeaderLine);
                 $newResponse = $client->send($request);
                 $response = $this->unwrapResponse($newResponse);
-
             }
-
         }
         return $response;
     }
-
-
 
     public function geTimeStamp()
     {

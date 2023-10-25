@@ -8,7 +8,6 @@ declare(strict_types=1);
  * @document https://help.kuaijingai.com
  * @contact  www.kuaijingai.com 7*12 9:00-21:00
  */
-
 namespace Fastwhal\HikDeviceGateway\DeviceMgmt;
 
 use Fastwhal\HikDeviceGateway\Core\BaseService;
@@ -45,31 +44,30 @@ class DeviceMgmt extends BaseService
      */
     public function addDevice(array $params)
     {
-
         $param['DeviceInList'] = $params;
 
-        return $this->doHttpReuqest('POST','/ISAPI/ContentMgmt/DeviceMgmt/addDevice?format=json', $param);
+        return $this->doHttpReuqest('POST', '/ISAPI/ContentMgmt/DeviceMgmt/addDevice?format=json', $param);
     }
 
     //获取设备列表
     public function getDeviceList(array $params)
     {
         $param['SearchDescription'] = $params;
-        return $this->doHttpReuqest('POST','/ISAPI/ContentMgmt/DeviceMgmt/deviceList?format=json', $param);
+        return $this->doHttpReuqest('POST', '/ISAPI/ContentMgmt/DeviceMgmt/deviceList?format=json', $param);
     }
 
     //批量删除设备
     public function deleteDeviceList(array $params)
     {
         $param['DevIndexList'] = $params;
-        return $this->doHttpReuqest('POST','/ISAPI/ContentMgmt/DeviceMgmt/delDevice?format=json',$param);
+        return $this->doHttpReuqest('POST', '/ISAPI/ContentMgmt/DeviceMgmt/delDevice?format=json', $param);
     }
 
     //删除单个设备
     public function deleteDevice(string $devIndex)
     {
-        $endpoint = '/ISAPI/ContentMgmt/DeviceMgmt/delDevice? format=json&devIndex='.$devIndex;
-        return $this->doHttpReuqest('DELETE',$endpoint);
+        $endpoint = '/ISAPI/ContentMgmt/DeviceMgmt/delDevice? format=json&devIndex=' . $devIndex;
+        return $this->doHttpReuqest('DELETE', $endpoint);
     }
 
     //修改设备信息
@@ -77,168 +75,167 @@ class DeviceMgmt extends BaseService
     {
         $endpoint = '/ISAPI/ContentMgmt/DeviceMgmt/modDevice?format=json';
         $param['DeviceInfo'] = $params;
-        return $this->doHttpReuqest('PUT',$endpoint,$param);
+        return $this->doHttpReuqest('PUT', $endpoint, $param);
     }
 
     //获取设备的所有网络接口信息。
     public function getDeviceNetwork(string $devIndex)
     {
-        $endpoint = '/ISAPI/System/Network/interfaces?format=json&devIndex='.$devIndex;
+        $endpoint = '/ISAPI/System/Network/interfaces?format=json&devIndex=' . $devIndex;
         $param = [
-            'format'=>'json',
-            'devIndex'=>$devIndex
+            'format' => 'json',
+            'devIndex' => $devIndex,
         ];
-        return $this->doHttpReuqest('GET',$endpoint,$param);
+        return $this->doHttpReuqest('GET', $endpoint, $param);
     }
 
     //获取设备参数。
     public function getDeviceInfo(string $devIndex)
     {
-        $endpoint = '/ISAPI/System/deviceInfo?format=json&devIndex='.$devIndex;
+        $endpoint = '/ISAPI/System/deviceInfo?format=json&devIndex=' . $devIndex;
         $param = [
-            'format'=>'json',
-            'devIndex'=>$devIndex
+            'format' => 'json',
+            'devIndex' => $devIndex,
         ];
-        return $this->doHttpReuqest('GET',$endpoint,$param);
+        return $this->doHttpReuqest('GET', $endpoint, $param);
     }
 
     //设置设备参数。
-    public function setDeviceInfo(string $devIndex,array $params)
+    public function setDeviceInfo(string $devIndex, array $params)
     {
-        $endpoint = '/ISAPI/System/deviceInfo?format=json&devIndex='.$devIndex;
+        $endpoint = '/ISAPI/System/deviceInfo?format=json&devIndex=' . $devIndex;
         $param = [
-            'DeviceInfo'=>$params
+            'DeviceInfo' => $params,
         ];
-        return $this->doHttpReuqest('PUT',$endpoint,$param);
+        return $this->doHttpReuqest('PUT', $endpoint, $param);
     }
 
     //重启设备
     public function rebootDevice(string $devIndex)
     {
-        $endpoint = '/ISAPI/System/reboot?format=json&devIndex='.$devIndex;
-        return $this->doHttpReuqest('PUT',$endpoint);
+        $endpoint = '/ISAPI/System/reboot?format=json&devIndex=' . $devIndex;
+        return $this->doHttpReuqest('PUT', $endpoint);
     }
 
     //获取设备的校时参数
     public function getDeviceTime(string $devIndex)
     {
-        $endpoint = '/ISAPI/System/time?format=json&devIndex='.$devIndex;
+        $endpoint = '/ISAPI/System/time?format=json&devIndex=' . $devIndex;
         $param = [
-            'format'=>'json',
-            'devIndex'=>$devIndex
+            'format' => 'json',
+            'devIndex' => $devIndex,
         ];
-        return $this->doHttpReuqest('GET',$endpoint,$param);
+        return $this->doHttpReuqest('GET', $endpoint, $param);
     }
 
     //设置设备的校时参数。
-    public function setDeviceTime(string $devIndex,array $params)
+    public function setDeviceTime(string $devIndex, array $params)
     {
-        $endpoint = '/ISAPI/System/time?format=json&devIndex='.$devIndex;
+        $endpoint = '/ISAPI/System/time?format=json&devIndex=' . $devIndex;
         $param = [
-            'Time'=>$params
+            'Time' => $params,
         ];
-        return $this->doHttpReuqest('PUT',$endpoint,$param);
+        return $this->doHttpReuqest('PUT', $endpoint, $param);
     }
 
     //获取设备时区。
     public function getDeviceTimeZone(string $devIndex)
     {
-        $endpoint = '/ISAPI/System/time/timeZone?devIndex='.$devIndex;
+        $endpoint = '/ISAPI/System/time/timeZone?devIndex=' . $devIndex;
         $param = [
-            'format'=>'json',
-            'devIndex'=>$devIndex
+            'format' => 'json',
+            'devIndex' => $devIndex,
         ];
-        return $this->doHttpReuqest('GET',$endpoint,$param);
+        return $this->doHttpReuqest('GET', $endpoint, $param);
     }
 
     //设置设备时区。
-    public function setDeviceTimeZone(string $devIndex,string $timezone)
+    public function setDeviceTimeZone(string $devIndex, string $timezone)
     {
-        $endpoint = '/ISAPI/System/time/timeZone?devIndex='.$devIndex;
+        $endpoint = '/ISAPI/System/time/timeZone?devIndex=' . $devIndex;
         $param = [
-            ''=>$timezone
+            '' => $timezone,
         ];
-        return $this->doHttpReuqest('PUT',$endpoint,$param);
+        return $this->doHttpReuqest('PUT', $endpoint, $param);
     }
 
     /**
      * @param string $id ID 是指报警输出编号
-     * @param string $devIndex
      * @param string $outputState 必选项，string，输出状态：“high"-高电平，“low”-低电平
-     * @return mixed|\Psr\Http\Message\ResponseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return mixed|\Psr\Http\Message\ResponseInterface
      */
-    public function trigger(string $id,string $devIndex,string $outputState)
+    public function trigger(string $id, string $devIndex, string $outputState)
     {
-        $endpoint = '/ISAPI/System/IO/outputs/'.$id.'/trigger?format=json&devIndex='.$devIndex;
+        $endpoint = '/ISAPI/System/IO/outputs/' . $id . '/trigger?format=json&devIndex=' . $devIndex;
         $param = [
-            'IOPortData'=>[
-                'outputState'=>$outputState
-            ]
+            'IOPortData' => [
+                'outputState' => $outputState,
+            ],
         ];
-        return $this->doHttpReuqest('PUT',$endpoint,$param);
+        return $this->doHttpReuqest('PUT', $endpoint, $param);
     }
 
     //获取指定网络接口信息
-    public function getDeviceNetworkById(string $id,string $devIndex)
+    public function getDeviceNetworkById(string $id, string $devIndex)
     {
-        $endpoint = '/ISAPI/System/Network/interfaces/'.$id.'?format=json&devIndex='.$devIndex;
+        $endpoint = '/ISAPI/System/Network/interfaces/' . $id . '?format=json&devIndex=' . $devIndex;
         $param = [
-            'format'=>'json',
-            'devIndex'=>$devIndex
+            'format' => 'json',
+            'devIndex' => $devIndex,
         ];
-        return $this->doHttpReuqest('GET',$endpoint,$param);
+        return $this->doHttpReuqest('GET', $endpoint, $param);
     }
 
     //设置指定网络接口信息
-    public function setDeviceNetworkById(string $id,string $devIndex,array $params)
+    public function setDeviceNetworkById(string $id, string $devIndex, array $params)
     {
-        $endpoint = '/ISAPI/System/Network/interfaces/'.$id.'?format=json&devIndex='.$devIndex;
+        $endpoint = '/ISAPI/System/Network/interfaces/' . $id . '?format=json&devIndex=' . $devIndex;
         $param = [
-            'NetworkInterface'=>$params
+            'NetworkInterface' => $params,
         ];
-        return $this->doHttpReuqest('PUT',$endpoint,$param);
+        return $this->doHttpReuqest('PUT', $endpoint, $param);
     }
 
     //获取指定网络接口的 IP 地址。
-    public function getDeviceIpAddress(string $id,string $devIndex)
+    public function getDeviceIpAddress(string $id, string $devIndex)
     {
-        $endpoint = '/ISAPI/System/Network/interfaces/'.$id.'/ipAddress?format=json&devIndex='.$devIndex;
+        $endpoint = '/ISAPI/System/Network/interfaces/' . $id . '/ipAddress?format=json&devIndex=' . $devIndex;
         $param = [
-            'format'=>'json',
-            'devIndex'=>$devIndex
+            'format' => 'json',
+            'devIndex' => $devIndex,
         ];
-        return $this->doHttpReuqest('GET',$endpoint,$param);
+        return $this->doHttpReuqest('GET', $endpoint, $param);
     }
 
     //获取指定网络接口的 IP 地址。
-    public function setDeviceIpAddress(string $id,string $devIndex,array $params)
+    public function setDeviceIpAddress(string $id, string $devIndex, array $params)
     {
-        $endpoint = '/ISAPI/System/Network/interfaces/'.$id.'/ipAddress?format=json&devIndex='.$devIndex;
+        $endpoint = '/ISAPI/System/Network/interfaces/' . $id . '/ipAddress?format=json&devIndex=' . $devIndex;
         $param = [
-            'IPAddress'=>$params
+            'IPAddress' => $params,
         ];
-        return $this->doHttpReuqest('PUT',$endpoint,$param);
+        return $this->doHttpReuqest('PUT', $endpoint, $param);
     }
 
     //通过从 FTP（文件传输协议）服务器上下载的升级包升级设备
-    public function upgradeEhome(string $devIndex,array $params)
+    public function upgradeEhome(string $devIndex, array $params)
     {
-        $endpoint = '/ISAPI/System/upgradeEhome?format=json&devIndex='.$devIndex;
+        $endpoint = '/ISAPI/System/upgradeEhome?format=json&devIndex=' . $devIndex;
         $param = [
-            'UpgradeParams'=>$params
+            'UpgradeParams' => $params,
         ];
-        return $this->doHttpReuqest('PUT',$endpoint,$param);
+        return $this->doHttpReuqest('PUT', $endpoint, $param);
     }
 
     //获取设备报警输入输出信息。
     public function getDeviceAlarmIOInfo(string $devIndex)
     {
-        $endpoint = '/ISAPI/System/IO?format=json&devIndex='.$devIndex;
+        $endpoint = '/ISAPI/System/IO?format=json&devIndex=' . $devIndex;
         $param = [
-            'format'=>'json',
-            'devIndex'=>$devIndex
+            'format' => 'json',
+            'devIndex' => $devIndex,
         ];
-        return $this->doHttpReuqest('GET',$endpoint,$param);
+        return $this->doHttpReuqest('GET', $endpoint, $param);
     }
 }

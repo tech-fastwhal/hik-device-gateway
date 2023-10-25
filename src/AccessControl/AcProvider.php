@@ -8,10 +8,8 @@ declare(strict_types=1);
  * @document https://help.kuaijingai.com
  * @contact  www.kuaijingai.com 7*12 9:00-21:00
  */
-
 namespace Fastwhal\HikDeviceGateway\AccessControl;
 
-use Fastwhal\HikDeviceGateway\Core\BaseService;
 use Fastwhal\HikDeviceGateway\Core\Container;
 use Fastwhal\HikDeviceGateway\Interfaces\Provider;
 
@@ -60,13 +58,13 @@ use Fastwhal\HikDeviceGateway\Interfaces\Provider;
  *
  * 历史事件
  * @method getAcEvent(string $devIndex,array $params)
- *
  */
-class AcProvider implements Provider{
+class AcProvider implements Provider
+{
     public function serviceProvider(Container $container)
     {
-        $container['Ac'] = function ($container){
-          return new Ac($container);
+        $container['Ac'] = function ($container) {
+            return new Ac($container);
         };
     }
 }

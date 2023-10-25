@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /**
  * This file is part of Kuaijing Bailing.
@@ -20,11 +21,10 @@ use Fastwhal\HikDeviceGateway\Interfaces\Provider;
  */
 class EventProvider implements Provider
 {
-
     public function serviceProvider(Container $container)
     {
-        $container['Event'] = function ($container){
-          return new Event($container);
+        $container['Event'] = function ($container) {
+            return new Event($container);
         };
     }
 }
