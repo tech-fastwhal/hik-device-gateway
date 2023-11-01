@@ -85,7 +85,7 @@ trait Client
      */
     public function doHttpReuqest(string $httpMetod, string $endpoint, array $params = [], array $headers = [])
     {
-        $this->dump(['$endpoint' => $endpoint, '发送请求参数' => json_encode($params)]);
+//        $this->dump(['$endpoint' => $endpoint, '发送请求参数' => json_encode($params)]);
         try {
             $config = self::getAppConfig();
             $baseUri = $config['protocol'] . '://' . $config['host'] . ':' . $config['port'];
