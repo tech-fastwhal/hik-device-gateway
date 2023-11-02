@@ -113,6 +113,17 @@ class Stream extends BaseService
         return $this->doHttpReuqest('PUT', $endpoint, $param);
     }
 
+    //批量获取全部通道的视频输入参数。
+    public function getChannels(string $devIndex)
+    {
+        $endpoint = '/ISAPI/System/Video/inputs/channels?format=json&devIndex=' . $devIndex;
+        $param = [
+            'format' => 'json',
+            'devIndex' => $devIndex,
+        ];
+        return $this->doHttpReuqest('GET', $endpoint, $param);
+    }
+
     //获取或设置指定通道的压缩参数。
     public function getStreamChannelConfig($id, string $devIndex)
     {

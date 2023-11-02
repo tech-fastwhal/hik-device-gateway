@@ -30,6 +30,7 @@ use Fastwhal\HikDeviceGateway\Interfaces\Provider;
  * @method picture($channelID,string $devIndex)
  * @method wakeUp(string $devIndex)
  * @method downloadVideoFile(string $devIndex,string $playbackURI)
+ * @method getChannels(string $devIndex)
  */
 class StreamProvider implements Provider
 {
