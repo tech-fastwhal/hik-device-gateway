@@ -66,7 +66,7 @@ class DeviceMgmt extends BaseService
     //删除单个设备
     public function deleteDevice(string $devIndex)
     {
-        $endpoint = '/ISAPI/ContentMgmt/DeviceMgmt/delDevice? format=json&devIndex=' . $devIndex;
+        $endpoint = '/ISAPI/ContentMgmt/DeviceMgmt/delDevice?format=json&devIndex=' . $devIndex;
         return $this->doHttpReuqest('DELETE', $endpoint);
     }
 
