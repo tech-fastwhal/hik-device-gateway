@@ -114,7 +114,11 @@ class DeviceMgmt extends BaseService
     public function rebootDevice(string $devIndex)
     {
         $endpoint = '/ISAPI/System/reboot?format=json&devIndex=' . $devIndex;
-        return $this->doHttpReuqest('PUT', $endpoint);
+        $param = [
+            'format' => 'json',
+            'devIndex' => $devIndex,
+        ];
+        return $this->doHttpReuqest('PUT', $endpoint,$param);
     }
 
     //获取设备的校时参数
@@ -134,6 +138,7 @@ class DeviceMgmt extends BaseService
         $endpoint = '/ISAPI/System/time?format=json&devIndex=' . $devIndex;
         $param = [
             'Time' => $params,
+            'devIndex'=>$devIndex
         ];
         return $this->doHttpReuqest('PUT', $endpoint, $param);
     }
